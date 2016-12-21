@@ -50,8 +50,8 @@ This will pass the recorded stereo buffer (as an array of two Float32Arrays, for
 	function getBufferCallback( buffers ) {
 		var newSource = audioContext.createBufferSource();
 		var newBuffer = audioContext.createBuffer( 2, buffers[0].length, audioContext.sampleRate );
-		newBuffer.getChannelData(0).set(buffers[0]);
-		newBuffer.getChannelData(1).set(buffers[1]);
+		newBuffer.copyToChannel(buffers[0], 0);
+		newBuffer.copyToChannel(buffers[1], 1);
 		newSource.buffer = newBuffer;
 
 		newSource.connect( audioContext.destination );
